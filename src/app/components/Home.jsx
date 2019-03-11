@@ -10,7 +10,7 @@ class Home extends Component<{}> {
       <Helmet>
         <title>Home | Trello</title>
       </Helmet>
-      <Link to="b/abc123">Create Your First Board</Link>
+      <Link to="/b/abc123">Create Your First Board</Link>
     </div>
   );
 }
