@@ -16,7 +16,7 @@ class Board extends Componet {
           <h1 className = "board-title"> Board Name </h1>
         </div>
         <div className = "lists">
-          {Object.values(lists).map(list => 
+          {lists.map(list => 
             <List key = {list.id} list={list} />)}
             </div>
       </div>
@@ -24,9 +24,11 @@ class Board extends Componet {
   };
 }
 
-const mapStateToProps = state =>{
+const mapStateToProps = (state, selfProps) =>{
+  const{boardId} = selfProps.match.params;
+  const board = state.boards[boardId];
   return{
-    lists: state.lists
+    lists: board.lists.map(listId => state.lists[listId])
   };
 };
 
