@@ -16,6 +16,14 @@ const initiaListState ={
   }
 };
 
+const initialBoardState = {
+  firstBoard: {
+    title: "Test Board: firstBoard",
+    id: "firstBoard",
+    lists: ["qwert"]
+  }
+};
+
 const cards = (state = initialCardsState, action) => {
   switch(action.type){
     default:
@@ -30,6 +38,13 @@ const lists = (state = initialListState, action) => {
   }
 }; 
 
+const boards = (state = initialBoardState, action) => {
+  switch (action.type){
+    default:
+    return state;
+  }
+};
+
 const counter = (state = 1, action) => {
   switch (action.type) {
     case "INCREMENT": {
@@ -40,4 +55,4 @@ const counter = (state = 1, action) => {
   }
 };
 
-export default { counter, cards, lists };
+export default { counter, cards, lists, boards };

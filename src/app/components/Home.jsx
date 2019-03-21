@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import {connect} from "react-redux";
 
 
 class Home extends Component<{}> {
@@ -10,9 +11,16 @@ class Home extends Component<{}> {
       <Helmet>
         <title>Home | Trello</title>
       </Helmet>
-      <Link to="/b/abc123">Create Your First Board</Link>
+      {boards.map(board => (
+        <Link key={board.id} to={'/b/${board.id}'}>
+        {board.title}
+        </Link>
+      ))}
     </div>
   );
 }
 
-export default Home;
+const mapStateToProps = state => ({
+  boards: Object.values(state.boards)
+});
+export default connect(mapStateToProps)(Home);
