@@ -29,24 +29,37 @@ class List extends React.Component<Props, State> {
     this.setState({ newCardText: event.target.value });
   };
 
+  handleSubmitCard = event => {
+    event.preventDefault();
+    const {newCardText} = this.state;
+    const {list, dispatch} = this.props;
+    dispatch({
+      type: "ADD_CARD",
+      payload: {cardTitle: newCardText, cardId: "card1", listId: list.id}
+    });
+    this.setState({newCardText: ""});
+  }
+
   render = () => {
     const { cards, list } = this.props;
     const { cardComposerIsOpen, newCardText } = this.state;
     return (
       <div className="list">
         <div className="list-title">{list.title}</div>
+
         {cards.map(card => (
           <div key={card.id} className="card-title">
             {card.title}
           </div>
         ))}
+
         {cardComposerIsOpen ? (
-          <form>
-            <Textarea
+          <form onSubmit ={this.handleSubmitCard}>
+            <textarea
             useCacheForDOMMeasurements
             minRows={3}
-            onChange={this.handleCardComposeChange
-            value={newCardText}}
+            onChange={this.handleCardComposeChange}
+            value={newCardText}
             />
             <input type="submit" value="Add" />
           </form>
@@ -63,7 +76,7 @@ class List extends React.Component<Props, State> {
   };
 }
 
-const mapStateToProps = {state, ownProps} => {
+const mapStateToProps = (state, ownProps) => {
   return{
     cards: ownProps.list.cards.map(cardID => state.cards[cardID])
 

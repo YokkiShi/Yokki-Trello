@@ -4,16 +4,16 @@ import List from "./List";
 import "./Board.scss";
 import{ connect } from "react-redux";
 
-class Board extends Componet {
+class Board extends Component {
   render = () => {
-    const{ lists } = this.props;
+    const{ lists, boardName } = this.props;
     return (
       <div className="board">
         <Helmet>
-          <title> Board Name </title>
+          <title> {boardName} </title>
         </Helmet>
         <div className = "board-header">
-          <h1 className = "board-title"> Board Name </h1>
+          <h1 className = "board-title"> {boardName} </h1>
         </div>
         <div className = "lists">
           {lists.map(list => 
@@ -28,7 +28,8 @@ const mapStateToProps = (state, selfProps) =>{
   const{boardId} = selfProps.match.params;
   const board = state.boards[boardId];
   return{
-    lists: board.lists.map(listId => state.lists[listId])
+    lists: board.lists.map(listId => state.lists[listId]),
+    boardName: board.title
   };
 };
 
