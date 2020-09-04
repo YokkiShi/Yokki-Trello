@@ -49,7 +49,7 @@
     "flow-bin": "^0.63.1",
     "ignore-loader": "^0.1.2",
     "image-webpack-loader": "^3.4.2",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.13.1",
     "nodemon": "^1.14.11",
     "postcss-loader": "^2.0.10",
     "prettier": "^1.10.2",
